@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import PublicRoute from "./components/PublicRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import Home from "./components/regular/page/Home";
-import Main from "./components/admin/page/Main";
+import Artists from "./components/admin/page/Artists";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Switch>
         <PublicRoute restricted={false} component={Home} path="/" exact />
 
-        <PrivateRoute restricted={true} component={Main} path="/admin" exact />
+        <PrivateRoute component={Artists} path="/admin" exact />
       </Switch>
     </Router>
   );
