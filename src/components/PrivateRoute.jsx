@@ -7,12 +7,11 @@ import SideBar from "./admin/SideBar";
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const token = useSelector((state) => state.user.token);
   return (
-    <div className="container mx-auto">
-      <div className="">
-        <SideBar />
-      </div>
+    <div className="flex flex-row h-full">
+      <SideBar />
+
       <div className=""></div>
-      <div className="col-12 col-md-10">
+      <div className="px-16 py-4 text-gray-700 bg-gray-200 h-screen w-screen">
         <Route
           {...rest}
           render={(props) =>
