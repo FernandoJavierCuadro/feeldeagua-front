@@ -5,7 +5,7 @@ import Footer from "./regular/Footer";
 
 const PublicRoute = ({ component: Component, restricted, ...rest }) => {
   return (
-    <div className="">
+    <div className="container mx-auto">
       <NavBar />
       <Route
         {...rest}
