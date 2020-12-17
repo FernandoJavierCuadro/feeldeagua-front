@@ -9,8 +9,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <div className="flex flex-row h-full">
       <SideBar />
-
-      <div className=""></div>
       <div className="px-16 py-4 text-gray-700 bg-gray-200 h-screen w-screen">
         <Route
           {...rest}

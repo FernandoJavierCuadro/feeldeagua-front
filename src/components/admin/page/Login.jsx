@@ -61,7 +61,7 @@ const Login = () => {
       })
         .then((res) => {
           dispatch(getUser(res.data));
-          history.push("/admin");
+          history.push("/admin/artists");
         })
         .catch((err) => {
           console.log(err);

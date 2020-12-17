@@ -3,53 +3,41 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <nav class="bg-gray-900 w-20  justify-between flex flex-col ">
-      <div class="mt-10 mb-10">
+    <nav class="bg-gray-900 min-w-20  justify-between flex flex-col ">
+      <div class="mt-10 mb-10 mx-2">
         <Link to="/">
           <img
             src="/images/logo-feel-redondo-blanco4.png"
             class="rounded-full w-10 h-10 mb-3 mx-auto"
           />
         </Link>
-        <div class="mt-10">
+        <div class="mt-10 mx-2">
           <ul>
             <li class="mb-6">
               <Link to="/admin/artists">
-                <span>
-                  <svg
-                    class="fill-current h-5 w-5 mx-auto text-gray-300 hover:text-green-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 4a4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0
-                          014-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4
-                          8-4z"
-                    ></path>
-                  </svg>
-                </span>
+                <i
+                  class="fill-current h-5 w-5 mx-auto text-gray-300 hover:text-green-500"
+                  viewBox="0 0 24 24"
+                >
+                  Artistas
+                </i>
               </Link>
             </li>
             <li class="mb-6">
               <Link to="/admin/albums">
-                <span>
-                  <svg
-                    class="fill-current h-5 w-5 text-gray-300 mx-auto hover:text-green-500"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 13H7v5h5v2H5V10h2v1h5v2M8
-                          4v2H4V4h4m2-2H2v6h8V2m10 9v2h-4v-2h4m2-2h-8v6h8V9m-2
-                          9v2h-4v-2h4m2-2h-8v6h8v-6z"
-                    ></path>
-                  </svg>
-                </span>
+                <i
+                  class="fill-current h-5 w-5 mx-auto text-gray-300 hover:text-green-500"
+                  viewBox="0 0 24 24"
+                >
+                  Albumes
+                </i>
               </Link>
             </li>
           </ul>
         </div>
       </div>
       <div class="mb-4">
-        <a href="#">
+        <Link to="/admin/logout">
           <span>
             <svg
               class="fill-current h-5 w-5 text-gray-300 mx-auto hover:text-red-500"
@@ -67,7 +55,7 @@ const Sidebar = () => {
               />
             </svg>
           </span>
-        </a>
+        </Link>
       </div>
     </nav>
   );

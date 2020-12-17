@@ -15,7 +15,7 @@ function App() {
         <PublicRoute restricted={false} component={Home} path="/" exact />
 
         <PublicRoute restricted={false} component={Login} path="/admin/login" />
-        <PrivateRoute component={Artists} path="/admin" exact />
+        <PrivateRoute component={Artists} path="/admin/artists" exact />
       </Switch>
     </Router>
   );
