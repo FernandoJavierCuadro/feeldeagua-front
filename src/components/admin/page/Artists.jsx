@@ -48,7 +48,7 @@ const Artists = () => {
           <SearchBox setSearch={setSearch} />
           <Link to="/admin/artists/create" className="py-3">
             <button
-              className="w-full py-3 px-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none"
+              className="w-full py-3 px-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none rounded-lg"
               type="btn"
             >
               Nuevo
@@ -104,7 +104,12 @@ const Artists = () => {
                         )}
                       </td>
                       <td className="text-center px-1">
-                        <Link to="/admin/artists/update">
+                        <Link
+                          to={{
+                            pathname: "/admin/artists/update",
+                            state: { artist },
+                          }}
+                        >
                           <button className="btn">
                             {" "}
                             <i className="fas fa-edit"></i>

@@ -7,6 +7,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/admin/page/Login";
 import Home from "./components/regular/page/Home";
 import Artists from "./components/admin/page/Artists";
+import ArtistCreateForm from "./components/admin/ArtistCreateForm";
 
 function App() {
   return (
@@ -16,6 +17,11 @@ function App() {
 
         <PublicRoute restricted={false} component={Login} path="/admin/login" />
         <PrivateRoute component={Artists} path="/admin/artists" exact />
+        <PrivateRoute
+          component={ArtistCreateForm}
+          path="/admin/artists/create"
+          exact
+        />
       </Switch>
     </Router>
   );

@@ -11,7 +11,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       <aside className="h-screen sticky top-0">
         <SideBar />
       </aside>
-      <div className="px-16 py-4 text-gray-700 bg-gray-200 w-screen">
+      <div className="px-16 py-4 text-gray-700 w-screen">
         <Route
           {...rest}
           render={(props) =>
