@@ -10,7 +10,7 @@ const ArtistCreateForm = () => {
   const token = useSelector((store) => store.user.token);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [draft, setDraft] = useState("");
+  const [draft, setDraft] = useState(false);
 
   const history = useHistory();
 
