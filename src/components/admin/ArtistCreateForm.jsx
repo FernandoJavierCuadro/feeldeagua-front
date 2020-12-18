@@ -61,13 +61,13 @@ const ArtistCreateForm = () => {
           />
           <label
             htmlFor="description"
-            className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
+            className="block my-2 text-xs font-semibold text-gray-600 uppercase"
           >
             Descripción
           </label>
           <CKEditor
             editor={ClassicEditor}
-            data="<p>Hello from CKEditor 5!</p>"
+            data=""
             onReady={(editor) => {
               console.log("Editor is ready to use!", editor);
             }}
@@ -76,7 +76,6 @@ const ArtistCreateForm = () => {
               setDescription(data);
             }}
             name="description"
-            className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
             id="description"
           />
           <label
