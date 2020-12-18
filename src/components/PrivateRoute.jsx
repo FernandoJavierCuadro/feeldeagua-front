@@ -7,9 +7,11 @@ import SideBar from "./admin/SideBar";
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const token = useSelector((state) => state.user.token);
   return (
-    <div className="flex flex-row h-full">
-      <SideBar />
-      <div className="px-16 py-4 text-gray-700 bg-gray-200 h-screen w-screen">
+    <div className="flex">
+      <aside className="h-screen sticky top-0">
+        <SideBar />
+      </aside>
+      <div className="px-16 py-4 text-gray-700 bg-gray-200 w-screen">
         <Route
           {...rest}
           render={(props) =>

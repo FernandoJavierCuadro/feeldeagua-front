@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <nav class="bg-gray-900 min-w-20  justify-between flex flex-col ">
-      <div class="mt-10 mb-10 mx-2">
+    <nav class="bg-gray-900 min-w-20 justify-between flex flex-col h-screen">
+      <div class="mt-14 mb-10 mx-2">
         <Link to="/">
           <img
             src="/images/logo-feel-redondo-blanco4.png"
