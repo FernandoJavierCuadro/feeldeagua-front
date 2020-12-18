@@ -14,7 +14,14 @@ const Artists = () => {
   useEffect(() => {
     let url = `${globalUrl}/api/v1/admin/artists`;
     search && (url = url.concat(`/search?name=${search}`));
-    axios.get(url).then((res) => {
+    axios({
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      url: `${globalUrl}/api/v1/admin/artists`,
+    }).then((res) => {
       setArtists(res.data);
     });
   }, [search, artist]);
@@ -37,7 +44,7 @@ const Artists = () => {
 
   return (
     <div className="container">
-      <div className="ml-8 mt-12 mb-12 mr-4">
+      <div className="ml-4 mt-12 mb-12 mr-4">
         <div className="flex justify-between">
           <SearchBox setSearch={setSearch} />
           <Link to="/admin/artists/create">
@@ -48,6 +55,48 @@ const Artists = () => {
               Nuevo
             </button>
           </Link>
+        </div>
+        <div className="container text-center">
+          <h1 className="text-5xl">Artistas</h1>
+          <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
+            <thead className="text-white">
+              <tr className="bg-green-400 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
+                <th className="py-3 pl-3 text-center">Image</th>
+                <th className="py-3 pl-3 text-center">Name</th>
+                <th className="py-3 pl-3 text-center">Description</th>
+                <th className="py-3 pl-3 text-center">Albums</th>
+                <th className="py-3 pl-3 text-center">Update</th>
+                <th className="py-3 pl-3 text-center">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {artists &&
+                artists.map((artist) => {
+                  return (
+                    <tr>
+                      <td className="text-center truncate max-w-0">
+                        {artist.name}
+                      </td>
+                      <td className="text-center truncate max-w-0">
+                        {artist.name}
+                      </td>
+                      <td className="text-center truncate max-w-sm">
+                        {artist.description}
+                      </td>
+                      <td className="text-center">{artist.albums}</td>
+                      <td className="text-center max-w-0">
+                        <Link to="/admin/artists/update">
+                          <button className="btn">
+                            {" "}
+                            <i className="fas fa-edit"></i>
+                          </button>
+                        </Link>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
