@@ -3,30 +3,31 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <nav class="bg-gray-900 min-w-20 justify-between flex flex-col h-screen">
-      <div class="mt-14 mb-10 mx-2">
+    <nav className="bg-gray-900 min-w-20 justify-between flex flex-col h-screen">
+      <div className="mt-14 mb-10 mx-2">
         <Link to="/">
           <img
             src="/images/logo-feel-redondo-blanco4.png"
-            class="rounded-full w-10 h-10 mb-3 mx-auto"
+            className="rounded-full w-10 h-10 mb-3 mx-auto"
+            alt="feeldeagua-logo"
           />
         </Link>
-        <div class="mt-10 mx-2">
+        <div className="mt-10 mx-2">
           <ul>
-            <li class="mb-6">
+            <li className="mb-6">
               <Link to="/admin/artists">
                 <i
-                  class="fill-current h-5 w-5 mx-auto text-gray-300 hover:text-green-500"
+                  className="fill-current h-5 w-5 mx-auto text-gray-300 hover:text-green-500"
                   viewBox="0 0 24 24"
                 >
                   Artistas
                 </i>
               </Link>
             </li>
-            <li class="mb-6">
+            <li className="mb-6">
               <Link to="/admin/albums">
                 <i
-                  class="fill-current h-5 w-5 mx-auto text-gray-300 hover:text-green-500"
+                  className="fill-current h-5 w-5 mx-auto text-gray-300 hover:text-green-500"
                   viewBox="0 0 24 24"
                 >
                   Albumes
@@ -36,11 +37,11 @@ const Sidebar = () => {
           </ul>
         </div>
       </div>
-      <div class="mb-4">
+      <div className="mb-4">
         <Link to="/admin/logout">
           <span>
             <svg
-              class="fill-current h-5 w-5 text-gray-300 mx-auto hover:text-red-500"
+              className="fill-current h-5 w-5 text-gray-300 mx-auto hover:text-red-500"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

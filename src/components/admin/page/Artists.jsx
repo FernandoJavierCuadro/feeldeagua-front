@@ -23,7 +23,7 @@ const Artists = () => {
     }).then((res) => {
       setArtists(res.data);
     });
-  }, [search]);
+  }, [search, artists, token]);
 
   const handleDelete = (_id) => {
     axios({
@@ -48,7 +48,7 @@ const Artists = () => {
           <SearchBox setSearch={setSearch} />
           <Link to="/admin/artists/create" className="py-3">
             <button
-              className="w-full py-3 px-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none rounded-lg"
+              className="w-full py-3 px-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none"
               type="btn"
             >
               Nuevo
@@ -59,7 +59,7 @@ const Artists = () => {
           <h1 className="text-5xl uppercase italic tracking-widest pb-5">
             Artistas
           </h1>
-          <table className="w-full flex flex-row flex-no-wrap sm:bg-white rounded-lg overflow-hidden sm:shadow-lg my-5">
+          <table className="w-full flex flex-row flex-no-wrap sm:bg-white overflow-hidden sm:shadow-lg my-5">
             <thead className="text-white">
               <tr className="bg-green-400 flex flex-col flex-no wrap sm:table-row rounded-l-lg sm:rounded-none mb-2 sm:mb-0">
                 <th className="py-3 px-3 text-center">Imagen</th>
@@ -80,7 +80,7 @@ const Artists = () => {
                         <img
                           className=""
                           src={globalUrl + artist.image}
-                          alt="Artist-img"
+                          alt="artist-img"
                         />
                       </td>
                       <td className="text-center max-w-0 px-1">
@@ -92,7 +92,7 @@ const Artists = () => {
                       <td className="text-center px-1">
                         <ul>
                           {artist.albums.map((album) => {
-                            <li>{album.name}</li>;
+                            return <li>{album.name}</li>;
                           })}
                         </ul>
                       </td>

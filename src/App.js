@@ -8,6 +8,8 @@ import Login from "./components/admin/page/Login";
 import Home from "./components/regular/page/Home";
 import Artists from "./components/admin/page/Artists";
 import ArtistCreateForm from "./components/admin/ArtistCreateForm";
+import Albums from "./components/admin/page/Albums";
+import AlbumCreateForm from "./components/admin/AlbumCreateForm";
 
 function App() {
   return (
@@ -20,6 +22,12 @@ function App() {
         <PrivateRoute
           component={ArtistCreateForm}
           path="/admin/artists/create"
+          exact
+        />
+        <PrivateRoute component={Albums} path="/admin/albums" exact />
+        <PrivateRoute
+          component={AlbumCreateForm}
+          path="/admin/albums/create"
           exact
         />
       </Switch>
