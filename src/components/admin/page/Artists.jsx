@@ -76,9 +76,9 @@ const Artists = () => {
                 artists.map((artist) => {
                   return (
                     <tr>
-                      <td className="text-center truncate max-w-0 h-12 object-scale-down">
+                      <td className="text-center truncate max-w-0">
                         <img
-                          className=""
+                          className="h-18 object-contain"
                           src={globalUrl + artist.image}
                           alt="artist-img"
                         />

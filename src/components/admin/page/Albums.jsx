@@ -77,9 +77,9 @@ const Albums = () => {
                 albums.map((album) => {
                   return (
                     <tr>
-                      <td className="text-center truncate max-w-0 h-12 object-scale-down">
+                      <td className="text-center truncate max-w-0">
                         <img
-                          className=""
+                          className="h-18 object-contain"
                           src={globalUrl + album.image}
                           alt="album-img"
                         />
