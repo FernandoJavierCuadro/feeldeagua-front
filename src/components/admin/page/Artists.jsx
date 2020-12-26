@@ -106,7 +106,12 @@ const Artists = () => {
                       <td className="text-center px-1">
                         <Link
                           to={{
-                            pathname: "/admin/artists/update",
+                            pathname:
+                              "/admin/artists/" +
+                              artist.name
+                                .toLowerCase()
+                                .trim()
+                                .replace(/ /g, "-"),
                             state: { artist },
                           }}
                         >

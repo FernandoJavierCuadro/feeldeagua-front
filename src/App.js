@@ -7,9 +7,10 @@ import PrivateRoute from "./components/PrivateRoute";
 import Login from "./components/admin/page/Login";
 import Home from "./components/regular/page/Home";
 import Artists from "./components/admin/page/Artists";
-import ArtistCreateForm from "./components/admin/ArtistCreateForm";
+import ArtistCreateForm from "./components/admin/page/ArtistCreateForm";
+import ArtistUpdateForm from "./components/admin/page/ArtistUpdateForm";
 import Albums from "./components/admin/page/Albums";
-import AlbumCreateForm from "./components/admin/AlbumCreateForm";
+import AlbumCreateForm from "./components/admin/page/AlbumCreateForm";
 
 function App() {
   return (
@@ -22,6 +23,11 @@ function App() {
         <PrivateRoute
           component={ArtistCreateForm}
           path="/admin/artists/create"
+          exact
+        />
+        <PrivateRoute
+          component={ArtistUpdateForm}
+          path="/admin/artists/:artist"
           exact
         />
         <PrivateRoute component={Albums} path="/admin/albums" exact />
