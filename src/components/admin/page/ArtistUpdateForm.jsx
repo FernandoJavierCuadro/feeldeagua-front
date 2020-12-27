@@ -7,15 +7,14 @@ import classNameicEditor from "@ckeditor/ckeditor5-build-classic";
 import globalUrl from "../../../utils/url";
 
 const ArtistUpdateForm = ({ state }) => {
-  const token = useSelector((store) => store.user.token);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [draft, setDraft] = useState("");
-
   const history = useHistory();
   const location = useLocation();
   const { artist } = location.state;
-  draft === "" && artist && setDraft(artist.draft);
+
+  const token = useSelector((store) => store.user.token);
+  const [name, setName] = useState(artist.name);
+  const [description, setDescription] = useState(artist.description);
+  const [draft, setDraft] = useState(artist.draft);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,7 +61,7 @@ const ArtistUpdateForm = ({ state }) => {
             className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
             id="name"
             type="text"
-            placeholder={artist.name}
+            value={name}
           />
           <label
             htmlFor="description"
@@ -72,7 +71,7 @@ const ArtistUpdateForm = ({ state }) => {
           </label>
           <CKEditor
             editor={classNameicEditor}
-            data={artist.description}
+            data={description}
             onReady={(editor) => {
               console.log("Editor is ready to use!");
             }}
