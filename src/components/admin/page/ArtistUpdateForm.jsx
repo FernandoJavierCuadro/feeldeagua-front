@@ -11,11 +11,11 @@ const ArtistUpdateForm = ({ state }) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [draft, setDraft] = useState("");
-  const [check, setCheck] = useState("");
 
   const history = useHistory();
   const location = useLocation();
   const { artist } = location.state;
+  draft === "" && artist && setDraft(artist.draft);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -100,6 +100,7 @@ const ArtistUpdateForm = ({ state }) => {
               id="check"
               type="checkbox"
               className="form-checkbox h-5 w-5 text-gray-600"
+              checked={draft}
               onChange={(e) => setDraft(e.target.checked)}
             />
             <span className="ml-2 text-gray-700">Ocultar</span>
