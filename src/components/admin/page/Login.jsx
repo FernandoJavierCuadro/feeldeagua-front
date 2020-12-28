@@ -17,7 +17,7 @@ const Login = () => {
     let isValid = true;
 
     if (password === "") {
-      passwordErr.passwordEmpty = "este es un campo requerido";
+      passwordErr.passwordEmpty = "ingrese un password por favor";
       isValid = false;
     }
 
@@ -34,7 +34,7 @@ const Login = () => {
     }
 
     if (name === "") {
-      nameErr.nameEmpty = "este es un campo requerido";
+      nameErr.nameEmpty = "ingrese un nombre por favor";
       isValid = false;
     }
 
@@ -93,7 +93,11 @@ const Login = () => {
             type="text"
           />
           {Object.keys(nameErr).map((key) => {
-            return <div className="alert-danger">{nameErr[key]}</div>;
+            return (
+              <div className="bg-red-200 relative text-red-500 p-3 my-3 rounded-lg">
+                {nameErr[key]}
+              </div>
+            );
           })}
           <label
             htmlFor="password"
@@ -109,7 +113,11 @@ const Login = () => {
             type="password"
           />
           {Object.keys(passwordErr).map((key) => {
-            return <div className="alert-danger">{passwordErr[key]}</div>;
+            return (
+              <div className="bg-red-200 relative text-red-500 p-3 my-3 rounded-lg">
+                {passwordErr[key]}
+              </div>
+            );
           })}
           <button
             className="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none"

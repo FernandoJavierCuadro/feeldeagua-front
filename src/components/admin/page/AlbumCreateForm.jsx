@@ -13,7 +13,79 @@ const ArtistCreateForm = () => {
   const [description, setDescription] = useState("");
   const [releaseYear, setReleaseYear] = useState(0);
   const [artist, setArtist] = useState(0);
+  const [image, setImage] = useState("");
+  const [rarFile, setRarFile] = useState("");
   const [draft, setDraft] = useState(false);
+  const [nameErr, setNameErr] = useState("");
+  const [descriptionErr, setDescriptionErr] = useState("");
+  const [releaseYearErr, setReleaseYearErr] = useState("");
+  const [artistErr, setArtistErr] = useState("");
+  const [imageErr, setImageErr] = useState("");
+  const [rarFileErr, setRarFileErr] = useState("");
+
+  const formValidation = () => {
+    const nameErr = {};
+    const descriptionErr = {};
+    const releaseYearErr = {};
+    const artistErr = {};
+    const imageErr = {};
+    const rarFileErr = {};
+    let isValid = true;
+
+    if (name.replace(/\s/g, "") === "") {
+      nameErr.nameEmpty = "Ingrese un nombre";
+      isValid = false;
+    }
+
+    if (description.replace(/\s/g, "") === "") {
+      descriptionErr.descriptionEmpty = "Ingrese una descripción";
+      isValid = false;
+    }
+
+    if (releaseYear === 0) {
+      releaseYearErr.releaseYearEmpty = "Ingrese el año de lanzamiento";
+      isValid = false;
+    }
+
+    if (artist === 0) {
+      artistErr.artistEmpty = "Ingrese el artista";
+      isValid = false;
+    }
+
+    if (image === "" || image === undefined) {
+      imageErr.imageEmpty = "Ingrese una imagen";
+      isValid = false;
+    } else {
+      const allowed_extensions = "jpg";
+      const file_extension = image.name.split(".").pop().toLowerCase();
+
+      if (allowed_extensions !== file_extension) {
+        imageErr.imageType = "Ingrese un formato de imagen válido";
+        isValid = false;
+      }
+    }
+
+    if (rarFile === "" || rarFile === undefined) {
+      rarFileErr.rarFileEmpty = "Ingrese un archivo .rar";
+      isValid = false;
+    } else {
+      const allowed_extensions = "rar";
+      const file_extension = rarFile.name.split(".").pop().toLowerCase();
+
+      if (allowed_extensions !== file_extension) {
+        rarFileErr.rarFileType = "Ingrese un formato de archivo válido ";
+        isValid = false;
+      }
+    }
+
+    setNameErr(nameErr);
+    setDescriptionErr(descriptionErr);
+    setReleaseYearErr(releaseYearErr);
+    setArtistErr(artistErr);
+    setImageErr(imageErr);
+    setRarFileErr(rarFileErr);
+    return isValid;
+  };
 
   const history = useHistory();
 
@@ -33,33 +105,31 @@ const ArtistCreateForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let img = document.querySelector("#imageFile");
-    let imageToSend = img.files[0];
 
-    let file = document.querySelector("#rarFile");
-    let fileToSend = file.files[0];
+    const isValid = formValidation();
+    if (isValid) {
+      let formData = new FormData();
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("releaseYear", releaseYear);
+      formData.append("artist", artist);
+      formData.append("image", image);
+      formData.append("file", rarFile);
+      formData.append("draft", draft);
 
-    let formData = new FormData();
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("releaseYear", releaseYear);
-    formData.append("artist", artist);
-    formData.append("image", imageToSend);
-    formData.append("file", fileToSend);
-    formData.append("draft", draft);
-
-    axios({
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-      url: `${globalUrl}/api/v1/admin/albums`,
-      data: formData,
-    })
-      .then((res) => {
-        history.goBack();
+      axios({
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        url: `${globalUrl}/api/v1/admin/albums`,
+        data: formData,
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          history.goBack();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
@@ -82,6 +152,13 @@ const ArtistCreateForm = () => {
             id="name"
             type="text"
           />
+          {Object.keys(nameErr).map((key) => {
+            return (
+              <div className="bg-red-200 relative text-red-500 py-1 px-3 my-3">
+                {nameErr[key]}
+              </div>
+            );
+          })}
           <label
             htmlFor="description"
             className="block my-2 text-xs font-semibold text-gray-600 uppercase"
@@ -92,7 +169,7 @@ const ArtistCreateForm = () => {
             editor={classNameicEditor}
             data=""
             onReady={(editor) => {
-              console.log("Editor is ready to use!", editor);
+              console.log(editor);
             }}
             onChange={(event, editor) => {
               const data = editor.getData();
@@ -101,6 +178,13 @@ const ArtistCreateForm = () => {
             name="description"
             id="description"
           />
+          {Object.keys(descriptionErr).map((key) => {
+            return (
+              <div className="bg-red-200 relative text-red-500 py-1 px-3 my-3">
+                {descriptionErr[key]}
+              </div>
+            );
+          })}
           <label
             htmlFor="name"
             className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
@@ -114,6 +198,13 @@ const ArtistCreateForm = () => {
             id="releaseYear"
             type="number"
           />
+          {Object.keys(releaseYearErr).map((key) => {
+            return (
+              <div className="bg-red-200 relative text-red-500 py-1 px-3 my-3">
+                {releaseYearErr[key]}
+              </div>
+            );
+          })}
           <label
             htmlFor="artist"
             className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
@@ -135,6 +226,13 @@ const ArtistCreateForm = () => {
                 return <option value={artist._id}>{artist.name}</option>;
               })}
           </select>
+          {Object.keys(artistErr).map((key) => {
+            return (
+              <div className="bg-red-200 relative text-red-500 py-1 px-3 my-3">
+                {artistErr[key]}
+              </div>
+            );
+          })}
           <label
             htmlFor="imageFile"
             className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
@@ -146,7 +244,15 @@ const ArtistCreateForm = () => {
             className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
             id="imageFile"
             type="file"
+            onChange={(e) => setImage(e.target.files[0])}
           />
+          {Object.keys(imageErr).map((key) => {
+            return (
+              <div className="bg-red-200 relative text-red-500 py-1 px-3 my-3">
+                {imageErr[key]}
+              </div>
+            );
+          })}
           <label
             htmlFor="rarFile"
             className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
@@ -158,7 +264,15 @@ const ArtistCreateForm = () => {
             className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
             id="rarFile"
             type="file"
+            onChange={(e) => setRarFile(e.target.files[0])}
           />
+          {Object.keys(rarFileErr).map((key) => {
+            return (
+              <div className="bg-red-200 relative text-red-500 py-1 px-3 my-3">
+                {rarFileErr[key]}
+              </div>
+            );
+          })}
           <label htmlFor="draft" className="inline-flex items-center mt-3">
             <input
               type="checkbox"
