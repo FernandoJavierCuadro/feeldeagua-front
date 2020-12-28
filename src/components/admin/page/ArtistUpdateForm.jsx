@@ -14,32 +14,69 @@ const ArtistUpdateForm = ({ state }) => {
   const token = useSelector((store) => store.user.token);
   const [name, setName] = useState(artist.name);
   const [description, setDescription] = useState(artist.description);
+  const [image, setImage] = useState(artist.image);
   const [draft, setDraft] = useState(artist.draft);
+  const [nameErr, setNameErr] = useState("");
+  const [descriptionErr, setDescriptionErr] = useState("");
+  const [imageErr, setImageErr] = useState("");
+
+  const formValidation = () => {
+    const nameErr = {};
+    const descriptionErr = {};
+    const imageErr = {};
+    let isValid = true;
+
+    if (name.replace(/\s/g, "") === "") {
+      nameErr.nameEmpty = "Ingrese un nombre";
+      isValid = false;
+    }
+
+    if (description.replace(/\s/g, "") === "") {
+      descriptionErr.descriptionEmpty = "Ingrese una descripción";
+      isValid = false;
+    }
+
+    if (typeof image === "object" && image !== null) {
+      const allowed_extensions = "jpg";
+      const file_extension = image.name.split(".").pop().toLowerCase();
+
+      if (allowed_extensions !== file_extension) {
+        imageErr.imageType = "Ingrese un formato de imagen válido";
+        isValid = false;
+      }
+    }
+
+    setNameErr(nameErr);
+    setDescriptionErr(descriptionErr);
+    setImageErr(imageErr);
+    return isValid;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let img = document.querySelector("#imageFile");
-    let imageToSend = img.files[0];
 
-    let formData = new FormData();
-    formData.append("id", artist._id);
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("image", imageToSend);
-    formData.append("draft", draft);
+    const isValid = formValidation();
+    if (isValid) {
+      let formData = new FormData();
+      formData.append("id", artist._id);
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("image", image);
+      formData.append("draft", draft);
 
-    axios({
-      method: "PUT",
-      headers: { Authorization: `Bearer ${token}` },
-      url: `${globalUrl}/api/v1/admin/artists`,
-      data: formData,
-    })
-      .then((res) => {
-        history.goBack();
+      axios({
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` },
+        url: `${globalUrl}/api/v1/admin/artists`,
+        data: formData,
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          history.goBack();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
@@ -63,6 +100,13 @@ const ArtistUpdateForm = ({ state }) => {
             type="text"
             value={name}
           />
+          {Object.keys(nameErr).map((key) => {
+            return (
+              <div className="bg-red-200 relative text-red-500 py-1 px-3 my-3">
+                {nameErr[key]}
+              </div>
+            );
+          })}
           <label
             htmlFor="description"
             className="block my-2 text-xs font-semibold text-gray-600 uppercase"
@@ -82,6 +126,13 @@ const ArtistUpdateForm = ({ state }) => {
             name="description"
             id="description"
           />
+          {Object.keys(descriptionErr).map((key) => {
+            return (
+              <div className="bg-red-200 relative text-red-500 py-1 px-3 my-3">
+                {descriptionErr[key]}
+              </div>
+            );
+          })}
           <label
             htmlFor="imageFile"
             className="block mt-2 text-xs font-semibold text-gray-600 uppercase"
@@ -93,7 +144,15 @@ const ArtistUpdateForm = ({ state }) => {
             className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
             id="imageFile"
             type="file"
+            onChange={(e) => setImage(e.target.files[0])}
           />
+          {Object.keys(imageErr).map((key) => {
+            return (
+              <div className="bg-red-200 relative text-red-500 py-1 px-3 my-3">
+                {imageErr[key]}
+              </div>
+            );
+          })}
           <label htmlFor="draft" className="inline-flex items-center mt-3">
             <input
               id="check"

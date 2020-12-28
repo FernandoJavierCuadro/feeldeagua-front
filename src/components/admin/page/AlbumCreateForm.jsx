@@ -6,7 +6,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import classNameicEditor from "@ckeditor/ckeditor5-build-classic";
 import globalUrl from "../../../utils/url";
 
-const ArtistCreateForm = () => {
+const AlbumCreateForm = () => {
   const token = useSelector((store) => store.user.token);
   const [artists, setArtists] = useState(null);
   const [name, setName] = useState("");
@@ -293,4 +293,4 @@ const ArtistCreateForm = () => {
   );
 };
 
-export default ArtistCreateForm;
+export default AlbumCreateForm;

@@ -104,7 +104,12 @@ const Albums = () => {
                       <td className="text-center px-1">
                         <Link
                           to={{
-                            pathname: "/admin/albums/update",
+                            pathname:
+                              "/admin/albums/" +
+                              album.name
+                                .toLowerCase()
+                                .trim()
+                                .replace(/ /g, "-"),
                             state: { album },
                           }}
                         >

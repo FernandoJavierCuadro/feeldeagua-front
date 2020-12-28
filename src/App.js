@@ -11,6 +11,7 @@ import ArtistCreateForm from "./components/admin/page/ArtistCreateForm";
 import ArtistUpdateForm from "./components/admin/page/ArtistUpdateForm";
 import Albums from "./components/admin/page/Albums";
 import AlbumCreateForm from "./components/admin/page/AlbumCreateForm";
+import AlbumUpdateForm from "./components/admin/page/AlbumUpdateForm";
 
 function App() {
   return (
@@ -34,6 +35,11 @@ function App() {
         <PrivateRoute
           component={AlbumCreateForm}
           path="/admin/albums/create"
+          exact
+        />
+        <PrivateRoute
+          component={AlbumUpdateForm}
+          path="/admin/albums/:album"
           exact
         />
       </Switch>
