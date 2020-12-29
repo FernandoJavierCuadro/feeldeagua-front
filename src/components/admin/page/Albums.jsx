@@ -13,6 +13,7 @@ const Albums = () => {
   useEffect(() => {
     let url = `${globalUrl}/api/v1/admin/albums`;
     search && (url = url.concat(`/search?name=${search}`));
+
     axios({
       method: "GET",
       headers: {
@@ -23,7 +24,7 @@ const Albums = () => {
     }).then((res) => {
       setAlbums(res.data);
     });
-  }, [search, albums, token]);
+  }, [search, albums]);
 
   const handleDelete = (_id) => {
     axios({
