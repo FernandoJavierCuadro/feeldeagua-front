@@ -28,7 +28,7 @@ const Albums = () => {
     return () => {
       isMounted = false;
     };
-  }, [search, albums]);
+  }, [search]);
 
   const handleDelete = (_id) => {
     axios({

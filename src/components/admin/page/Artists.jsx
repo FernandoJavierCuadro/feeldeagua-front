@@ -11,6 +11,7 @@ const Artists = () => {
   const [search, setSearch] = useState(null);
 
   useEffect(() => {
+    console.log("llamando");
     let isMounted = true;
     let url = `${globalUrl}/api/v1/admin/artists`;
     search && (url = url.concat(`/search?name=${search}`));
@@ -27,7 +28,7 @@ const Artists = () => {
     return () => {
       isMounted = false;
     };
-  }, [search, artists]);
+  }, [search]);
 
   const handleDelete = (_id) => {
     axios({

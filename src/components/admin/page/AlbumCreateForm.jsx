@@ -47,7 +47,7 @@ const AlbumCreateForm = () => {
       isValid = false;
     }
 
-    if (artist === 0) {
+    if (artist.replace(/\s/g, "") === "") {
       artistErr.artistEmpty = "Ingrese el artista";
       isValid = false;
     }
@@ -90,6 +90,7 @@ const AlbumCreateForm = () => {
   const history = useHistory();
 
   useEffect(() => {
+    let isMounted = true;
     let url = `${globalUrl}/api/v1/admin/artists`;
     axios({
       method: "GET",
@@ -99,14 +100,16 @@ const AlbumCreateForm = () => {
       },
       url: url,
     }).then((res) => {
-      setArtists(res.data);
+      isMounted && setArtists(res.data);
     });
+    return () => {
+      isMounted = false;
+    };
   }, [token]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log(artist);
     const isValid = formValidation();
     if (isValid) {
       let formData = new FormData();
@@ -224,7 +227,7 @@ const AlbumCreateForm = () => {
             </option>
             {artists &&
               artists.map((artist) => {
-                return <option value={artist._id}>{artist.name}</option>;
+                return <option value={artist.name}>{artist.name}</option>;
               })}
           </select>
           {Object.keys(artistErr).map((key) => {

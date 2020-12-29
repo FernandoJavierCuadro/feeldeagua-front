@@ -86,6 +86,7 @@ const AlbumUpdateForm = ({ state }) => {
   };
 
   useEffect(() => {
+    let isMounted = true;
     let url = `${globalUrl}/api/v1/admin/artists`;
     axios({
       method: "GET",
@@ -95,8 +96,11 @@ const AlbumUpdateForm = ({ state }) => {
       },
       url: url,
     }).then((res) => {
-      setArtists(res.data);
+      isMounted && setArtists(res.data);
     });
+    return () => {
+      isMounted = false;
+    };
   }, [token]);
 
   const handleSubmit = (e) => {
@@ -221,7 +225,7 @@ const AlbumUpdateForm = ({ state }) => {
             </option>
             {artists &&
               artists.map((artist) => {
-                return <option value={artist.id}>{artist.name}</option>;
+                return <option value={artist.name}>{artist.name}</option>;
               })}
           </select>
           {Object.keys(artistErr).map((key) => {
