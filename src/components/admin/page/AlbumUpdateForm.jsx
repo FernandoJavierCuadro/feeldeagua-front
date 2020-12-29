@@ -221,7 +221,7 @@ const AlbumUpdateForm = ({ state }) => {
             onChange={(e) => setArtist(e.target.value)}
           >
             <option value="" disabled>
-              Seleccione un artista
+              {artist}
             </option>
             {artists &&
               artists.map((artist) => {
