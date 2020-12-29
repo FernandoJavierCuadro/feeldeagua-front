@@ -23,7 +23,7 @@ const Artists = () => {
     }).then((res) => {
       setArtists(res.data);
     });
-  }, [search, artists, token]);
+  }, [search, artists]);
 
   const handleDelete = (_id) => {
     axios({

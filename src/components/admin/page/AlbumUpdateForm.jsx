@@ -213,15 +213,15 @@ const AlbumUpdateForm = ({ state }) => {
             name="artist"
             className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
             id="artist"
-            value={artist._id}
+            defaultValue={""}
             onChange={(e) => setArtist(e.target.value)}
           >
-            <option disabled selected value="">
+            <option value="" disabled>
               Seleccione un artista
             </option>
             {artists &&
               artists.map((artist) => {
-                return <option value={artist._id}>{artist.name}</option>;
+                return <option value={artist.id}>{artist.name}</option>;
               })}
           </select>
           {Object.keys(artistErr).map((key) => {
