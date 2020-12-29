@@ -11,6 +11,7 @@ const Albums = () => {
   const [search, setSearch] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
     let url = `${globalUrl}/api/v1/admin/albums`;
     search && (url = url.concat(`/search?name=${search}`));
 
@@ -22,8 +23,11 @@ const Albums = () => {
       },
       url: url,
     }).then((res) => {
-      setAlbums(res.data);
+      isMounted && setAlbums(res.data);
     });
+    return () => {
+      isMounted = false;
+    };
   }, [search, albums]);
 
   const handleDelete = (_id) => {
