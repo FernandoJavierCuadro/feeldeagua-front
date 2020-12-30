@@ -2,14 +2,14 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { isAdmin } from "../utils/auth";
-import SideBar from "./admin/SideBar";
+import Sidebar from "./admin/Sidebar";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const token = useSelector((state) => state.user.token);
   return (
     <div className="flex">
       <aside className="h-screen sticky top-0">
-        <SideBar />
+        <Sidebar />
       </aside>
       <div className="px-16 py-4 text-gray-700 w-screen">
         <Route

@@ -1,7 +1,23 @@
 import React from "react";
+import Tilt from "react-tilt";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-  return <div></div>;
+  return (
+    <div className="container bg-black flex">
+      <Tilt
+        className="Tilt m-auto"
+        options={{ reverse: true, max: 45, perspective: 800, reset: true }}
+        style={{ height: 650, width: 650 }}
+      >
+        <div className="Tilt-inner">
+          <Link to="/artistas">
+            <img src="/images/feeldeaguanegro.gif" alt="" />{" "}
+          </Link>
+        </div>
+      </Tilt>
+    </div>
+  );
 };
 
 export default Home;

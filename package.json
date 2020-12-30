@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classNameic": "^24.0.0",
+    "@ckeditor/ckeditor5-build-classic": "^24.0.0",
     "@ckeditor/ckeditor5-react": "^3.0.0",
     "@craco/craco": "^6.0.0",
     "@tailwindcss/postcss7-compat": "^2.0.2",
@@ -19,6 +19,7 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-tilt": "^0.1.4",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
