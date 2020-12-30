@@ -13,7 +13,6 @@ const AlbumUpdateForm = ({ state }) => {
 
   const token = useSelector((store) => store.user.token);
   const [artists, setArtists] = useState(null);
-  const [_id, set_id] = useState(album._id);
   const [name, setName] = useState(album.name);
   const [description, setDescription] = useState(album.description);
   const [releaseYear, setReleaseYear] = useState(album.releaseYear);
@@ -124,7 +123,7 @@ const AlbumUpdateForm = ({ state }) => {
     const isValid = formValidation();
     if (isValid) {
       let formData = new FormData();
-      formData.append("_id", _id);
+      formData.append("_id", album._id);
       formData.append("name", name);
       formData.append("description", description);
       formData.append("releaseYear", releaseYear);
