@@ -47,7 +47,7 @@ const AlbumCreateForm = () => {
       isValid = false;
     }
 
-    if (artist.replace(/\s/g, "") === "") {
+    if (artist === 0 || artist.replace(/\s/g, "") === "") {
       artistErr.artistEmpty = "Ingrese el artista";
       isValid = false;
     }
@@ -56,24 +56,38 @@ const AlbumCreateForm = () => {
       imageErr.imageEmpty = "Ingrese una imagen";
       isValid = false;
     } else {
-      const allowed_extensions = "jpg";
+      const allowed_extensions = ["jpg", "png", "gif"];
       const file_extension = image.name.split(".").pop().toLowerCase();
+      let file_ext_ok = false;
 
-      if (allowed_extensions !== file_extension) {
-        imageErr.imageType = "Ingrese un formato de imagen válido";
+      for (let i = 0; i < allowed_extensions.length; i++) {
+        if (allowed_extensions[i] === file_extension) {
+          file_ext_ok = true;
+        }
+      }
+
+      if (!file_ext_ok) {
+        imageErr.imageType = "Ingrese un formato de archivo válido";
         isValid = false;
       }
     }
 
     if (rarFile === "" || rarFile === undefined) {
-      rarFileErr.rarFileEmpty = "Ingrese un archivo .rar";
+      rarFileErr.rarFileEmpty = "Ingrese un archivo";
       isValid = false;
     } else {
-      const allowed_extensions = "rar";
+      const allowed_extensions = ["rar", "zip"];
       const file_extension = rarFile.name.split(".").pop().toLowerCase();
+      let file_ext_ok = false;
 
-      if (allowed_extensions !== file_extension) {
-        rarFileErr.rarFileType = "Ingrese un formato de archivo válido ";
+      for (let i = 0; i < allowed_extensions.length; i++) {
+        if (allowed_extensions[i] === file_extension) {
+          file_ext_ok = true;
+        }
+      }
+
+      if (!file_ext_ok) {
+        rarFileErr.rarFileType = "Ingrese un formato de archivo válido";
         isValid = false;
       }
     }

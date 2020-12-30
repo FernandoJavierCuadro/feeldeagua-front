@@ -13,6 +13,7 @@ const AlbumUpdateForm = ({ state }) => {
 
   const token = useSelector((store) => store.user.token);
   const [artists, setArtists] = useState(null);
+  const [_id, set_id] = useState(album._id);
   const [name, setName] = useState(album.name);
   const [description, setDescription] = useState(album.description);
   const [releaseYear, setReleaseYear] = useState(album.releaseYear);
@@ -51,27 +52,41 @@ const AlbumUpdateForm = ({ state }) => {
       isValid = false;
     }
 
-    if (artist === 0) {
+    if (artist === "") {
       artistErr.artistEmpty = "Ingrese el artista";
       isValid = false;
     }
 
     if (typeof image === "object" && image !== null) {
-      const allowed_extensions = "jpg";
+      const allowed_extensions = ["jpg", "png", "gif"];
       const file_extension = image.name.split(".").pop().toLowerCase();
+      let file_ext_ok = false;
 
-      if (allowed_extensions !== file_extension) {
-        imageErr.imageType = "Ingrese un formato de imagen válido";
+      for (let i = 0; i < allowed_extensions.length; i++) {
+        if (allowed_extensions[i] === file_extension) {
+          file_ext_ok = true;
+        }
+      }
+
+      if (!file_ext_ok) {
+        imageErr.imageType = "Ingrese un formato de archivo válido";
         isValid = false;
       }
     }
 
     if (typeof rarFile === "object" && image !== null) {
-      const allowed_extensions = "rar";
+      const allowed_extensions = ["rar", "zip"];
       const file_extension = rarFile.name.split(".").pop().toLowerCase();
+      let file_ext_ok = false;
 
-      if (allowed_extensions !== file_extension) {
-        rarFileErr.rarFileType = "Ingrese un formato de archivo válido ";
+      for (let i = 0; i < allowed_extensions.length; i++) {
+        if (allowed_extensions[i] === file_extension) {
+          file_ext_ok = true;
+        }
+      }
+
+      if (!file_ext_ok) {
+        rarFileErr.rarFileType = "Ingrese un formato de archivo válido";
         isValid = false;
       }
     }
@@ -109,6 +124,7 @@ const AlbumUpdateForm = ({ state }) => {
     const isValid = formValidation();
     if (isValid) {
       let formData = new FormData();
+      formData.append("_id", _id);
       formData.append("name", name);
       formData.append("description", description);
       formData.append("releaseYear", releaseYear);
@@ -217,12 +233,9 @@ const AlbumUpdateForm = ({ state }) => {
             name="artist"
             className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
             id="artist"
-            defaultValue={""}
+            defaultValue={artist}
             onChange={(e) => setArtist(e.target.value)}
           >
-            <option value="" disabled>
-              {artist}
-            </option>
             {artists &&
               artists.map((artist) => {
                 return <option value={artist.name}>{artist.name}</option>;

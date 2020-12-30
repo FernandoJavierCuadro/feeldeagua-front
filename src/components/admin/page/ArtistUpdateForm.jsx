@@ -37,11 +37,18 @@ const ArtistUpdateForm = ({ state }) => {
     }
 
     if (typeof image === "object" && image !== null) {
-      const allowed_extensions = "jpg";
+      const allowed_extensions = ["jpg", "png", "gif"];
       const file_extension = image.name.split(".").pop().toLowerCase();
+      let file_ext_ok = false;
 
-      if (allowed_extensions !== file_extension) {
-        imageErr.imageType = "Ingrese un formato de imagen válido";
+      for (let i = 0; i < allowed_extensions.length; i++) {
+        if (allowed_extensions[i] === file_extension) {
+          file_ext_ok = true;
+        }
+      }
+
+      if (!file_ext_ok) {
+        imageErr.imageType = "Ingrese un formato de archivo válido";
         isValid = false;
       }
     }
