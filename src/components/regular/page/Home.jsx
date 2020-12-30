@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="container bg-black flex">
+    <div className="container bg-black">
       <Tilt
         className="Tilt m-auto"
         options={{ reverse: true, max: 45, perspective: 800, reset: true }}

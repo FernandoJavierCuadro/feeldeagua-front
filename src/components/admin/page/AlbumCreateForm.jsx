@@ -15,7 +15,7 @@ const AlbumCreateForm = () => {
   const [artist, setArtist] = useState(0);
   const [image, setImage] = useState("");
   const [rarFile, setRarFile] = useState("");
-  const [draft, setDraft] = useState(false);
+  const [draft, setDraft] = useState(true);
   const [nameErr, setNameErr] = useState("");
   const [descriptionErr, setDescriptionErr] = useState("");
   const [releaseYearErr, setReleaseYearErr] = useState("");

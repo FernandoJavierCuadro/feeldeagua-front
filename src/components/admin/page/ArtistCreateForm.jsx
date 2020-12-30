@@ -13,7 +13,7 @@ const ArtistCreateForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-  const [draft, setDraft] = useState(false);
+  const [draft, setDraft] = useState(true);
   const [nameErr, setNameErr] = useState("");
   const [descriptionErr, setDescriptionErr] = useState("");
   const [imageErr, setImageErr] = useState("");
