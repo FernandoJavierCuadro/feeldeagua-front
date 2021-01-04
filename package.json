@@ -28,7 +28,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
+    "build:css": "tailwind build src/style.css -o dist/style.css",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

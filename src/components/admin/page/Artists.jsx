@@ -49,7 +49,9 @@ const Artists = () => {
     <div className="container">
       <div className="mx-4">
         <div className="flex justify-between">
-          <SearchBox className="py-3 mt-6" setSearch={setSearch} />
+          <div className="py-3 mt-6">
+            <SearchBox setSearch={setSearch} />
+          </div>
           <Link to="/admin/artists/create" className="py-3">
             <button
               className="w-full py-3 px-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none"

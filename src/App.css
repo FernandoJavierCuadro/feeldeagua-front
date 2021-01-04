@@ -56,7 +56,3 @@ th:not(:last-child) {
 }
 
 /* CUSTOM COLORS */
-
-.nav-color {
-  background-color: gray;
-}
