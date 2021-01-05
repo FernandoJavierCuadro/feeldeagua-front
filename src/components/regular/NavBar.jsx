@@ -1,9 +1,29 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import globalUrl from "../../utils/url";
 import SearchBox from "../SearchBox";
 
 const NavBar = ({}) => {
   const [search, setSearch] = useState(null);
+  const [dropDown, setDropDown] = useState(null);
+
+  if (search === "") {
+    setSearch(null);
+    setDropDown(null);
+  }
+
+  useEffect(() => {
+    let url = `${globalUrl}/api/v1/artists/search?name=${search}`;
+    axios.get(url).then((res) => {
+      setDropDown(res.data);
+      console.log(dropDown);
+    });
+  }, [search]);
+
+  function handleLink() {
+    setDropDown(null);
+  }
 
   return (
     <nav className="relative flex flex-wrap items-center px-2 py-3 navbar-expand-lg border-b-2 border-black">
@@ -20,7 +40,29 @@ const NavBar = ({}) => {
               alt="feeldeagua-logo"
             />
           </Link>
-          <SearchBox setSearch={setSearch} />
+          <div className="flex flex-column relative">
+            <SearchBox setSearch={setSearch} />
+            <ul className="origin-top-left absolute left-0 mt-16 rounded-md shadow-lg bg-white w-full">
+              {dropDown &&
+                dropDown.map((artist) => {
+                  return (
+                    <li className="mx-3 text-black">
+                      <Link
+                        to={{
+                          pathname:
+                            "/artist/" +
+                            artist.name.toLowerCase().trim().replace(/ /g, "-"),
+                          state: { artist },
+                        }}
+                        onClick={handleLink}
+                      >
+                        {artist.name}
+                      </Link>
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
         </div>
         <div className="w-auto relative">
           <ul className="flex flex-row whitespace-nowrap">
