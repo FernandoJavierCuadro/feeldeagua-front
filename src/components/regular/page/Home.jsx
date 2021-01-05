@@ -17,12 +17,14 @@ const Home = () => {
     };
   }, []);
 
+  const albumDownload = () => {};
+
   return (
     <div className="bg-black h-screen">
       <NavBar />
       <div className="container">
         <div className="text-center">
-          <h1 className="w-full py-3 my-6 font-medium tracking-widest text-white text-xl uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
+          <h1 className="w-full py-3 my-6 font-medium tracking-widest text-white text-xl uppercase bg-black shadow-lg focus:outline-none">
             Novedades
           </h1>
           <div className="container">
@@ -30,17 +32,14 @@ const Home = () => {
               {albums &&
                 albums.map((album) => {
                   return (
-                    <li className="p-3 w-1/5">
-                      <Link
-                        to={globalUrl + "/api/v1/album/download/" + album._id}
-                      >
-                        <img
-                          className="h-18 object-contain border-white"
-                          src={globalUrl + album.image}
-                          alt="album-img"
-                        />
-                      </Link>
-                      <h3 className="pt-3 mt-3 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none truncate">
+                    <li className="p-3 w-1/5 hover:bg-gray-900 hover:shadow-none ">
+                      <img
+                        className="h-18 object-contain border-white"
+                        src={globalUrl + album.image}
+                        alt="album-img"
+                        onClick={albumDownload(album._id)}
+                      />
+                      <h3 className="pt-3 mt-3 font-medium tracking-widest text-white uppercase truncate">
                         {album.name}
                       </h3>
                       <p className="pt-1 text-white truncate">

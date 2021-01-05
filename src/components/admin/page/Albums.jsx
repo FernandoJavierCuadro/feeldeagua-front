@@ -91,14 +91,16 @@ const Albums = () => {
                           alt="album-img"
                         />
                       </td>
-                      <td className="text-center max-w-0 px-1">{album.name}</td>
+                      <td className="text-center truncate max-w-0 px-1">
+                        {album.name}
+                      </td>
                       <td className="text-center truncate max-w-sm px-1">
                         {album.description}
                       </td>
                       <td className="text-center truncate max-w-sm px-1">
                         {album.releaseYear}
                       </td>
-                      <td className="text-center truncate max-w-sm px-1">
+                      <td className="text-center truncate max-w-0 px-1">
                         {album.artist}
                       </td>
                       <td className="text-center px-1">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <nav className="bg-gray-900 min-w-20 justify-between flex flex-col h-screen">
+    <nav className="bg-black min-w-20 justify-between flex flex-col h-screen">
       <div className="mt-14 mb-10 mx-2">
         <Link to="/">
           <img

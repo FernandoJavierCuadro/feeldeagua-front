@@ -12,7 +12,7 @@ const AlbumCreateForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [releaseYear, setReleaseYear] = useState(0);
-  const [artist, setArtist] = useState(0);
+  const [artist, setArtist] = useState("");
   const [image, setImage] = useState("");
   const [rarFile, setRarFile] = useState("");
   const [draft, setDraft] = useState(true);
@@ -47,7 +47,7 @@ const AlbumCreateForm = () => {
       isValid = false;
     }
 
-    if (artist === 0 || artist.replace(/\s/g, "") === "") {
+    if (artist.replace(/\s/g, "") === "") {
       artistErr.artistEmpty = "Ingrese el artista";
       isValid = false;
     }
