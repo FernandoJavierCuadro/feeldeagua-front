@@ -17,7 +17,6 @@ const NavBar = ({}) => {
     let url = `${globalUrl}/api/v1/artists/search?name=${search}`;
     axios.get(url).then((res) => {
       setDropDown(res.data);
-      console.log(dropDown);
     });
   }, [search]);
 
@@ -26,7 +25,7 @@ const NavBar = ({}) => {
   }
 
   return (
-    <nav className="relative flex flex-wrap items-center px-2 py-3 navbar-expand-lg border-b-2 border-black">
+    <nav className="relative flex flex-wrap items-center px-2 py-3 navbar-expand-lg border-b-2 border-black bg-white">
       <div className="container px-4 mx-auto flex items-center justify-between">
         <div className="w-full relative flex flex-row">
           <Link
