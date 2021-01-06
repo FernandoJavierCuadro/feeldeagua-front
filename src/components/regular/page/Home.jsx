@@ -18,12 +18,11 @@ const Home = () => {
   }, []);
 
   const albumDownload = (id) => {
-    axios({
-      url: `${globalUrl}/api/v1/album/download/${id}`,
-      method: "GET",
-      responseType: "blob", // important
-    }).then((resp) => {
-      fileDownload(resp.data, "album.zip");
+    axios.get(`${globalUrl}/api/v1/album/download/${id}`).then((resp) => {
+      let name = resp.headers["content-disposition"];
+      name = name.split("-");
+      name = name[name.length - 1].replace('"', "");
+      fileDownload(resp.data, name);
     });
   };
 
