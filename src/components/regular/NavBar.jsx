@@ -5,7 +5,7 @@ import globalUrl from "../../utils/url";
 import SearchBox from "../SearchBox";
 
 const NavBar = ({}) => {
-  const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState("");
   const [dropDown, setDropDown] = useState(null);
 
   if (search === "") {

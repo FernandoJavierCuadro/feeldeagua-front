@@ -27,7 +27,7 @@ const Artists = () => {
     return () => {
       isMounted = false;
     };
-  }, [search]);
+  }, [search, token]);
 
   const handleDelete = (_id) => {
     axios({

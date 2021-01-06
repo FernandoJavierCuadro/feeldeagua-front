@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import fileDownload from "js-file-download";
 import globalUrl from "../../../utils/url";
 import NavBar from "../NavBar";
 
@@ -17,7 +17,15 @@ const Home = () => {
     };
   }, []);
 
-  const albumDownload = () => {};
+  const albumDownload = (id) => {
+    axios({
+      url: `${globalUrl}/api/v1/album/download/${id}`,
+      method: "GET",
+      responseType: "blob", // important
+    }).then((resp) => {
+      fileDownload(resp.data, "album.zip");
+    });
+  };
 
   return (
     <div className="bg-black h-screen">
@@ -32,12 +40,14 @@ const Home = () => {
               {albums &&
                 albums.map((album) => {
                   return (
-                    <li className="p-3 w-1/5 hover:bg-gray-900 hover:shadow-none ">
+                    <li
+                      className="p-3 w-1/5 hover:bg-gray-900 hover:shadow-none cursor-pointer"
+                      onClick={() => albumDownload(album._id)}
+                    >
                       <img
                         className="h-18 object-contain border-white"
                         src={globalUrl + album.image}
                         alt="album-img"
-                        onClick={albumDownload(album._id)}
                       />
                       <h3 className="pt-3 mt-3 font-medium tracking-widest text-white uppercase truncate">
                         {album.name}

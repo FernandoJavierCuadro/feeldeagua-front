@@ -13,7 +13,6 @@ const ArtistCreateForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
-  const [draft, setDraft] = useState(true);
   const [nameErr, setNameErr] = useState("");
   const [descriptionErr, setDescriptionErr] = useState("");
   const [imageErr, setImageErr] = useState("");
@@ -69,7 +68,7 @@ const ArtistCreateForm = () => {
       formData.append("name", name);
       formData.append("description", description);
       formData.append("image", image);
-      formData.append("draft", draft);
+      formData.append("draft", true);
 
       axios({
         method: "POST",
@@ -159,14 +158,6 @@ const ArtistCreateForm = () => {
               </div>
             );
           })}
-          <label htmlFor="draft" className="inline-flex items-center mt-3">
-            <input
-              type="checkbox"
-              className="form-checkbox h-5 w-5 text-gray-600"
-              onChange={(e) => setDraft(e.target.checked)}
-            />
-            <span className="ml-2 text-gray-700">Ocultar</span>
-          </label>
           <button
             className="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none"
             type="submit"
