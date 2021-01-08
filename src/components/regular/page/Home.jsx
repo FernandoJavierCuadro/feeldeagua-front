@@ -18,10 +18,15 @@ const Home = () => {
   }, []);
 
   const albumDownload = (id) => {
-    axios.get(`${globalUrl}/api/v1/album/download/${id}`).then((resp) => {
+    axios({
+      url: `${globalUrl}/api/v1/album/download/${id}`,
+      method: "GET",
+      responseType: "blob",
+    }).then((resp) => {
       let name = resp.headers["content-disposition"];
       name = name.split("-");
       name = name[name.length - 1].replace('"', "");
+      console.log(name);
       fileDownload(resp.data, name);
     });
   };

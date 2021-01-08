@@ -89,16 +89,16 @@ const Artists = () => {
                           alt="artist-img"
                         />
                       </td>
-                      <td className="text-center max-w-0 px-1">
+                      <td className="text-center truncate px-1">
                         {artist.name}
                       </td>
-                      <td className="text-center truncate max-w-sm px-1">
+                      <td className="text-center truncate max-w-xs px-1">
                         {artist.description}
                       </td>
-                      <td className="text-center px-1">
-                        <ul>
+                      <td className="max-w-0 px-1">
+                        <ul className="">
                           {artist.albums.map((album) => {
-                            return <li>{album.name}</li>;
+                            return <li className="truncate">{album.name}</li>;
                           })}
                         </ul>
                       </td>
