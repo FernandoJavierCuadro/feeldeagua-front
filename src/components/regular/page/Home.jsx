@@ -32,37 +32,40 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-black h-screen">
+    <div className="">
       <NavBar />
-      <div className="container">
-        <div className="text-center">
-          <h1 className="w-full py-3 my-6 font-medium tracking-widest text-white text-xl uppercase bg-black shadow-lg focus:outline-none">
-            Novedades
-          </h1>
-          <div className="container">
-            <ul className="rounded border-2 border-white flex flex-row p-6 m-3">
-              {albums &&
-                albums.map((album) => {
-                  return (
-                    <li
-                      className="p-3 w-1/5 hover:bg-gray-900 hover:shadow-none cursor-pointer"
-                      onClick={() => albumDownload(album._id)}
-                    >
-                      <img
-                        className="h-18 object-contain border-white"
-                        src={globalUrl + album.image}
-                        alt="album-img"
-                      />
-                      <h3 className="pt-3 mt-3 font-medium tracking-widest text-white uppercase truncate">
-                        {album.name}
-                      </h3>
-                      <p className="pt-1 text-white truncate">
-                        ({album.artist})
-                      </p>
-                    </li>
-                  );
-                })}
-            </ul>
+      <div className="bg-black h-screen">
+        <div className="container py-3">
+          <div className="mt-24"></div>
+          <div className="text-center">
+            <h1 className="w-full py-3 my-6 font-medium tracking-widest text-white text-xl uppercase bg-black shadow-lg focus:outline-none">
+              Novedades
+            </h1>
+            <div className="container">
+              <ul className="rounded border-2 border-white flex flex-row p-6 m-3">
+                {albums &&
+                  albums.map((album) => {
+                    return (
+                      <li
+                        className="p-3 w-1/5 hover:bg-gray-900 hover:shadow-none cursor-pointer"
+                        onClick={() => albumDownload(album._id)}
+                      >
+                        <img
+                          className="h-18 object-contain border-white"
+                          src={globalUrl + album.image}
+                          alt="album-img"
+                        />
+                        <h3 className="pt-3 mt-3 font-medium tracking-widest text-white uppercase truncate">
+                          {album.name}
+                        </h3>
+                        <p className="pt-1 text-white truncate">
+                          ({album.artist})
+                        </p>
+                      </li>
+                    );
+                  })}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

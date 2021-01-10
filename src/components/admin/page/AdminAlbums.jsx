@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import globalUrl from "../../../utils/url";
 import SearchBox from "../../SearchBox";
 
-const Albums = () => {
+const AdminAlbums = () => {
   const token = useSelector((store) => store.user.token);
   const [albums, setAlbums] = useState(null);
   const [search, setSearch] = useState(null);
@@ -74,9 +74,9 @@ const Albums = () => {
                 <th className="py-3 px-3 text-center">Descripcion</th>
                 <th className="py-3 px-3 text-center">Año</th>
                 <th className="py-3 px-3 text-center">Artista</th>
-                <th className="py-3 px-1 text-center">Oculto</th>
-                <th className="py-3 px-1 text-center">Actualizar</th>
-                <th className="py-3 pl-1 pr-3 text-center">Eliminar</th>
+                <th className="py-1 px-1 text-center">Oculto</th>
+                <th className="py-1 px-1 text-center">Actualizar</th>
+                <th className="py-1 pl-1 text-center">Eliminar</th>
               </tr>
             </thead>
             <tbody>
@@ -84,33 +84,33 @@ const Albums = () => {
                 albums.map((album) => {
                   return (
                     <tr>
-                      <td className="text-center truncate max-w-0">
+                      <td className="text-center truncate max-w-0 px-1">
                         <img
                           className="h-18 object-contain"
                           src={globalUrl + album.image}
                           alt="album-img"
                         />
                       </td>
-                      <td className="text-center truncate max-w-0 px-1">
+                      <td className="text-center truncate max-w-sm">
                         {album.name}
                       </td>
-                      <td className="text-center truncate max-w-sm px-1">
+                      <td className="text-center truncate max-w-0">
                         {album.description}
                       </td>
-                      <td className="text-center truncate max-w-sm px-1">
+                      <td className="text-center truncate max-w-0">
                         {album.releaseYear}
                       </td>
-                      <td className="text-center truncate max-w-0 px-1">
+                      <td className="text-center truncate max-w-0">
                         {album.artist}
                       </td>
-                      <td className="text-center px-1">
+                      <td className="text-center">
                         {album.draft ? (
                           <i className="far fa-check-square"></i>
                         ) : (
                           <i className="far fa-square"></i>
                         )}
                       </td>
-                      <td className="text-center px-1">
+                      <td className="text-center">
                         <Link
                           to={{
                             pathname:
@@ -128,7 +128,7 @@ const Albums = () => {
                           </button>
                         </Link>
                       </td>
-                      <td className="text-center px-1">
+                      <td className="text-center">
                         <button
                           className="btn"
                           onClick={() => handleDelete(album._id)}
@@ -147,4 +147,4 @@ const Albums = () => {
   );
 };
 
-export default Albums;
+export default AdminAlbums;

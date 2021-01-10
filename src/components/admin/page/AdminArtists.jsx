@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import globalUrl from "../../../utils/url";
 import SearchBox from "../../SearchBox";
 
-const Artists = () => {
+const AdminArtists = () => {
   const token = useSelector((store) => store.user.token);
   const [artists, setArtists] = useState(null);
   const [search, setSearch] = useState(null);
@@ -74,7 +74,7 @@ const Artists = () => {
                 <th className="py-3 px-3 text-center">Albumes</th>
                 <th className="py-3 px-1 text-center">Oculto</th>
                 <th className="py-3 px-1 text-center">Actualizar</th>
-                <th className="py-3 pl-1 pr-3 text-center">Eliminar</th>
+                <th className="py-3 pl-1 text-center">Eliminar</th>
               </tr>
             </thead>
             <tbody>
@@ -82,34 +82,34 @@ const Artists = () => {
                 artists.map((artist) => {
                   return (
                     <tr>
-                      <td className="text-center truncate max-w-0">
+                      <td className="text-center truncate max-w-0 px-1">
                         <img
                           className="h-18 object-contain"
                           src={globalUrl + artist.image}
                           alt="artist-img"
                         />
                       </td>
-                      <td className="text-center truncate px-1">
+                      <td className="text-center truncate max-w-sm">
                         {artist.name}
                       </td>
-                      <td className="text-center truncate max-w-xs px-1">
+                      <td className="text-center truncate max-w-0">
                         {artist.description}
                       </td>
-                      <td className="max-w-0 px-1">
+                      <td className="max-w-0 text-center truncate">
                         <ul className="">
                           {artist.albums.map((album) => {
                             return <li className="truncate">{album.name}</li>;
                           })}
                         </ul>
                       </td>
-                      <td className="text-center px-1">
+                      <td className="text-center">
                         {artist.draft ? (
                           <i className="far fa-check-square"></i>
                         ) : (
                           <i className="far fa-square"></i>
                         )}
                       </td>
-                      <td className="text-center px-1">
+                      <td className="text-center">
                         <Link
                           to={{
                             pathname:
@@ -127,7 +127,7 @@ const Artists = () => {
                           </button>
                         </Link>
                       </td>
-                      <td className="text-center px-1">
+                      <td className="text-center">
                         <button
                           className="btn"
                           onClick={() => handleDelete(artist._id)}
@@ -146,4 +146,4 @@ const Artists = () => {
   );
 };
 
-export default Artists;
+export default AdminArtists;

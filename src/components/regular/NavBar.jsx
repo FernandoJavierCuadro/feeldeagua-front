@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import globalUrl from "../../utils/url";
 import SearchBox from "../SearchBox";
 
-const NavBar = ({}) => {
+const NavBar = () => {
   const [search, setSearch] = useState("");
   const [dropDown, setDropDown] = useState(null);
 
@@ -25,7 +25,7 @@ const NavBar = ({}) => {
   }
 
   return (
-    <nav className="relative flex flex-wrap items-center px-2 py-3 navbar-expand-lg border-b-2 border-black bg-white">
+    <nav className="fixed flex flex-wrap w-screen items-center px-2 border-b-2 bg-white">
       <div className="container px-4 mx-auto flex items-center justify-between">
         <div className="w-full relative flex flex-row">
           <Link
@@ -65,6 +65,9 @@ const NavBar = ({}) => {
         </div>
         <div className="w-auto relative">
           <ul className="flex flex-row whitespace-nowrap">
+            <li className="mx-3 font-medium tracking-widest uppercaseshadow-lg focus:outline-none hover:text-gray-600 hover:shadow-none">
+              <Link to="/home">Home</Link>
+            </li>
             <li className="mx-3 font-medium tracking-widest uppercaseshadow-lg focus:outline-none hover:text-gray-600 hover:shadow-none">
               <Link to="/artistas">Artistas</Link>
             </li>
