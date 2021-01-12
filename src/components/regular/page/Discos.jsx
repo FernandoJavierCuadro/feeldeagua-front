@@ -4,12 +4,12 @@ import fileDownload from "js-file-download";
 import globalUrl from "../../../utils/url";
 import NavBar from "../NavBar";
 
-const Home = () => {
+const Discos = () => {
   const [albums, setAlbums] = useState(null);
 
   useEffect(() => {
     let isMounted = true;
-    axios.get(`${globalUrl}/api/v1/albums/latest`).then((res) => {
+    axios.get(`${globalUrl}/api/v1/albums`).then((res) => {
       isMounted && setAlbums(res.data);
     });
     return () => {
@@ -38,14 +38,14 @@ const Home = () => {
           <div className="mt-24"></div>
           <div className="text-center">
             <h1 className="w-full py-3 my-6 font-medium tracking-widest text-white text-xl uppercase bg-black shadow-lg focus:outline-none">
-              Novedades
+              Discos
             </h1>
             <div className="container">
-              <ul className="rounded border-2 flex flex-row p-6">
+              <div className="rounded border-2 grid grid-cols-5 p-6">
                 {albums &&
                   albums.map((album) => {
                     return (
-                      <li className="p-3 w-1/5 img__wrap">
+                      <div className="p-3 img__wrap">
                         <img
                           className="h-18 object-contain"
                           src={globalUrl + album.image}
@@ -65,10 +65,10 @@ const Home = () => {
                             Descargar
                           </button>
                         </div>
-                      </li>
+                      </div>
                     );
                   })}
-              </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -77,4 +77,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Discos;

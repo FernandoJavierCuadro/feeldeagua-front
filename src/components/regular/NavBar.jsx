@@ -25,7 +25,7 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="fixed flex flex-wrap w-screen items-center px-2 border-b-2 bg-white">
+    <nav className="fixed flex flex-wrap w-screen items-center px-2 border-b-2 bg-white z-50">
       <div className="container px-4 mx-auto flex items-center justify-between">
         <div className="w-full relative flex flex-row">
           <Link
@@ -49,7 +49,7 @@ const NavBar = () => {
                       <Link
                         to={{
                           pathname:
-                            "/artist/" +
+                            "/artistas/" +
                             artist.name.toLowerCase().trim().replace(/ /g, "-"),
                           state: { artist },
                         }}
@@ -70,6 +70,9 @@ const NavBar = () => {
             </li>
             <li className="mx-3 font-medium tracking-widest uppercaseshadow-lg focus:outline-none hover:text-gray-600 hover:shadow-none">
               <Link to="/artistas">Artistas</Link>
+            </li>
+            <li className="mx-3 font-medium tracking-widest uppercaseshadow-lg focus:outline-none hover:text-gray-600 hover:shadow-none">
+              <Link to="/discos">Discos</Link>
             </li>
             <li className="mx-3 font-medium tracking-widest uppercaseshadow-lg focus:outline-none hover:text-gray-600 hover:shadow-none">
               <Link to="/sobre-nosotros">Sobre nosotros</Link>

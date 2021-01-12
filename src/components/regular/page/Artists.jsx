@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import fileDownload from "js-file-download";
+import { Link } from "react-router-dom";
 import globalUrl from "../../../utils/url";
 import NavBar from "../NavBar";
 
@@ -32,16 +32,25 @@ const Artists = () => {
                 {artists &&
                   artists.map((artist) => {
                     return (
-                      <div className="p-3 hover:bg-gray-900 hover:shadow-none cursor-pointer">
-                        <img
-                          className="border-white object-fit h-60 mx-auto"
-                          src={globalUrl + artist.image}
-                          alt="artist-img"
-                        />
-                        <h3 className="pt-3 mt-3 font-medium tracking-widest text-white uppercase truncate">
-                          {artist.name}
-                        </h3>
-                      </div>
+                      <Link
+                        to={{
+                          pathname:
+                            "/artistas/" +
+                            artist.name.toLowerCase().trim().replace(/ /g, "-"),
+                          state: { artist },
+                        }}
+                      >
+                        <div className="p-3 hover:bg-gray-900 hover:shadow-none cursor-pointer">
+                          <img
+                            className="border-white object-fit h-60 mx-auto"
+                            src={globalUrl + artist.image}
+                            alt="artist-img"
+                          />
+                          <h3 className="pt-3 mt-3 font-medium tracking-widest text-white uppercase truncate">
+                            {artist.name}
+                          </h3>
+                        </div>
+                      </Link>
                     );
                   })}
               </div>

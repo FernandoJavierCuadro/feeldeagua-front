@@ -7,6 +7,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import Intro from "./components/regular/page/Intro";
 import Home from "./components/regular/page/Home";
 import Artists from "./components/regular/page/Artists";
+import Artist from "./components/regular/page/Artist";
+import Discos from "./components/regular/page/Discos";
 import Login from "./components/admin/page/Login";
 import AdminArtists from "./components/admin/page/AdminArtists";
 import ArtistCreateForm from "./components/admin/page/ArtistCreateForm";
@@ -25,6 +27,18 @@ function App() {
           restricted={false}
           component={Artists}
           path="/artistas"
+          exact
+        />
+        <PublicRoute
+          restricted={false}
+          component={Artist}
+          path="/artistas/:artist"
+          exact
+        />
+        <PublicRoute
+          restricted={false}
+          component={Discos}
+          path="/discos"
           exact
         />
         <PublicRoute restricted={false} component={Login} path="/admin/login" />
