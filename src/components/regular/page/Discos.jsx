@@ -52,10 +52,10 @@ const Discos = () => {
                           alt="album-img"
                         />
                         <div className="img__content align-middle">
-                          <h3 className="py-3 mt-3 mx-3 text-xs text-white uppercase truncate">
+                          <h3 className="py-3 mt-3 mx-3 text-sm text-white uppercase truncate">
                             {album.name}
                           </h3>
-                          <p className="pb-3 mx-3 text-xs text-white truncate">
+                          <p className="pb-3 mx-3 text-sm text-white truncate">
                             ({album.artist})
                           </p>
                           <button
