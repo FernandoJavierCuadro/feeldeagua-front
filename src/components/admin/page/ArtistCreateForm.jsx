@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Resizer from "react-image-file-resizer";
 import { useHistory } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import classNameicEditor from "@ckeditor/ckeditor5-build-classic";
@@ -13,9 +14,43 @@ const ArtistCreateForm = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [imageName, setImageName] = useState("");
   const [nameErr, setNameErr] = useState("");
   const [descriptionErr, setDescriptionErr] = useState("");
   const [imageErr, setImageErr] = useState("");
+
+  const fileChangedHandler = (file) => {
+    var fileInput = false;
+    if (file) {
+      fileInput = true;
+    }
+    if (fileInput) {
+      const file_extension = file.name.split(".").pop().toLowerCase();
+      if (file_extension === "gif") {
+        setImage(file);
+      } else {
+        try {
+          Resizer.imageFileResizer(
+            file,
+            300,
+            300,
+            "JPEG",
+            100,
+            0,
+            (uri) => {
+              setImageName(file.name.slice(0, -4) + ".jpg");
+              setImage(uri);
+            },
+            "blob",
+            200,
+            200
+          );
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    }
+  };
 
   const formValidation = () => {
     const nameErr = {};
@@ -38,7 +73,7 @@ const ArtistCreateForm = () => {
       isValid = false;
     } else {
       const allowed_extensions = ["jpg", "png", "gif"];
-      const file_extension = image.name.split(".").pop().toLowerCase();
+      const file_extension = imageName.split(".").pop().toLowerCase();
       let file_ext_ok = false;
 
       for (let i = 0; i < allowed_extensions.length; i++) {
@@ -68,6 +103,7 @@ const ArtistCreateForm = () => {
       formData.append("name", name);
       formData.append("description", description);
       formData.append("image", image);
+      formData.append("imageName", imageName);
       formData.append("draft", true);
 
       axios({
@@ -149,7 +185,7 @@ const ArtistCreateForm = () => {
             className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
             id="imageFile"
             type="file"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) => fileChangedHandler(e.target.files[0])}
           />
           {Object.keys(imageErr).map((key) => {
             return (
