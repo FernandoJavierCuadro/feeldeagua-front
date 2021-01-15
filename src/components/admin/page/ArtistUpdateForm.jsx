@@ -30,6 +30,7 @@ const ArtistUpdateForm = ({ state }) => {
     if (fileInput) {
       const file_extension = file.name.split(".").pop().toLowerCase();
       if (file_extension === "gif") {
+        setImageName(file.name);
         setImage(file);
       } else {
         try {
