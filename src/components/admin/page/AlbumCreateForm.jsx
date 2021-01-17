@@ -38,8 +38,8 @@ const AlbumCreateForm = () => {
         try {
           Resizer.imageFileResizer(
             file,
-            300,
-            300,
+            500,
+            500,
             "JPEG",
             100,
             0,
@@ -102,7 +102,8 @@ const AlbumCreateForm = () => {
       }
 
       if (!file_ext_ok) {
-        imageErr.imageType = "Ingrese un formato de archivo válido";
+        imageErr.imageType =
+          "Ingrese un formato de archivo válido (jpg, png ó gif)";
         isValid = false;
       }
     }
