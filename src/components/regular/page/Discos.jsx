@@ -40,8 +40,8 @@ const Discos = () => {
             <h1 className="w-full py-3 my-6 font-medium tracking-widest text-white text-xl uppercase bg-black shadow-lg focus:outline-none">
               Discos
             </h1>
-            <div className="container">
-              <div className="rounded border-2 grid grid-cols-5 p-6">
+            <div className="container px-40">
+              <div className="rounded border-2 grid grid-cols-3 p-6">
                 {albums &&
                   albums.map((album) => {
                     return (

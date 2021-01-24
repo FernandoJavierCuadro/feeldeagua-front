@@ -37,7 +37,7 @@ const Artist = ({ state }) => {
     <div className="">
       <NavBar />
       <div className="bg-black min-h-screen">
-        <div className="container py-3">
+        <div className="container py-3 px-40">
           <div className="mt-24"></div>
           <div className="text-center">
             <h1 className="w-full py-3 my-6 font-medium tracking-widest text-white text-xl uppercase bg-black shadow-lg focus:outline-none">

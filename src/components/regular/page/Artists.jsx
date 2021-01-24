@@ -27,7 +27,7 @@ const Artists = () => {
             <h1 className="w-full py-3 my-6 font-medium tracking-widest text-white text-xl uppercase bg-black shadow-lg focus:outline-none">
               Artistas
             </h1>
-            <div className="container">
+            <div className="container px-40">
               <div className="rounded border-2 border-white grid grid-cols-3 p-6 m-3">
                 {artists &&
                   artists.map((artist) => {

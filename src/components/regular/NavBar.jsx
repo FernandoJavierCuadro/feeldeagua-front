@@ -28,11 +28,17 @@ const NavBar = () => {
     <nav className="fixed flex flex-wrap w-screen items-center px-2 border-b-2 bg-white z-50">
       <div className="container px-4 mx-auto flex items-center justify-between">
         <div className="w-full relative flex flex-row">
-          <img
-            src="/images/logo-feel-redondo-blanco4.png"
-            className="mt-3 leading-relaxed inline-block mr-4 rounded-full w-12 h-12 border-2 border-black hover:bg-gray-600 hover:shadow-none"
-            alt="feeldeagua-logo"
-          />
+          <Link
+            to="/discos"
+            className="mt-3 leading-relaxed inline-block mr-4"
+            href="intro"
+          >
+            <img
+              src="/images/logo-feel-redondo-blanco4.png"
+              className="rounded-full w-12 h-12 border-2 border-black hover:bg-gray-600 hover:shadow-none"
+              alt="feeldeagua-logo"
+            />
+          </Link>
           <div className="flex flex-column relative">
             <div className="pt-3">
               <SearchBox setSearch={setSearch} />
