@@ -40,7 +40,9 @@ const NavBar = () => {
             />
           </Link>
           <div className="flex flex-column relative">
-            <SearchBox setSearch={setSearch} />
+            <div className="pt-3">
+              <SearchBox setSearch={setSearch} />
+            </div>
             <ul className="origin-top-left absolute left-0 mt-16 rounded-md shadow-lg bg-white w-full">
               {dropDown &&
                 dropDown.map((artist) => {
