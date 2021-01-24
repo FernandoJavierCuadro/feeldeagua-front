@@ -11,7 +11,7 @@ const Intro = () => {
         style={{ height: 650, width: 650 }}
       >
         <div className="Tilt-inner">
-          <Link to="/home">
+          <Link to="/discos">
             <img src="/images/feeldeaguanegro.gif" alt="" />{" "}
           </Link>
         </div>

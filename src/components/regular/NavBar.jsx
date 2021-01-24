@@ -68,13 +68,10 @@ const NavBar = () => {
         <div className="w-auto relative">
           <ul className="flex flex-row whitespace-nowrap">
             <li className="mx-3 font-medium tracking-widest uppercaseshadow-lg focus:outline-none hover:text-gray-600 hover:shadow-none">
-              <Link to="/home">Home</Link>
+              <Link to="/discos">Discos</Link>
             </li>
             <li className="mx-3 font-medium tracking-widest uppercaseshadow-lg focus:outline-none hover:text-gray-600 hover:shadow-none">
               <Link to="/artistas">Artistas</Link>
-            </li>
-            <li className="mx-3 font-medium tracking-widest uppercaseshadow-lg focus:outline-none hover:text-gray-600 hover:shadow-none">
-              <Link to="/discos">Discos</Link>
             </li>
             <li className="mx-3 font-medium tracking-widest uppercaseshadow-lg focus:outline-none hover:text-gray-600 hover:shadow-none">
               <Link to="/sobre-nosotros">Sobre nosotros</Link>
