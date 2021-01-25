@@ -42,7 +42,7 @@ const Artists = () => {
                       >
                         <div className="p-3 hover:bg-gray-900 hover:shadow-none cursor-pointer">
                           <img
-                            className="border-white object-fit h-60 mx-auto"
+                            className="border-white object-fit h-40 mx-auto"
                             src={globalUrl + artist.image}
                             alt="artist-img"
                           />

@@ -47,7 +47,7 @@ const Discos = () => {
                     return (
                       <div className="p-3 img__wrap">
                         <img
-                          className="h-18 object-contain"
+                          className="object-contain"
                           src={globalUrl + album.image}
                           alt="album-img"
                         />
